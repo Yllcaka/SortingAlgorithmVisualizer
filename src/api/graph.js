@@ -4,6 +4,13 @@ const graph = (heigth, width) => {
   let graph = {};
   let visited = [];
   let queue = Queue();
+  const getGraph = () => Object.entries( graph).map(item => {
+  
+    let key = item[0];
+    let value = item[1];
+    return {[key]:value,};
+  })
+  // const getGraph = () => graph;
   for (let row = 0; row < heigth; row++) {
     // graph[row] = {};
     for (let col = 0; col < width; col++) {
@@ -20,6 +27,7 @@ const graph = (heigth, width) => {
             item.col >= 0 &&
             item.col <= width - 1
         )
+        // .map((item) => `${item["row"]} ${item["col"]}`);
         .map((item) => `${item["row"]} ${item["col"]}`);
     }
   }
@@ -29,8 +37,7 @@ const graph = (heigth, width) => {
     queue.enqueue(start);
 
     for(let node in graph){
-     
-      // console.log(g);
+
       while (!queue.isEmpty()) {
         let s = queue.dequeue();
         
@@ -48,73 +55,9 @@ const graph = (heigth, width) => {
     
   };
   return {
+    getGraph,
     bfs,
   };
 };
 export default graph;
 
-// const Graph = () => {
-//   let graph = {};
-
-//   const addEdge = (u, v) => {
-//     graph[u].push(v);
-//   };
-//   const BFS = (s) => {
-//     let visited = Array(Math.max(graph) + 1).fill(false);
-//     let queue = Queue();
-//     queue.enqueue(s);
-//     visited[s] = True;
-
-//     while (!queue.isEmpty()) {
-//       s = queue.shift();
-//       graph[s].forEach((element) => {
-//         if (visited[element] == false) {
-//           queue.enqueue(element);
-//           visited[i] = true;
-//         }
-//       });
-//     }
-//   };
-// };
-
-// class Graph:
-
-//     # Constructor
-//     def __init__(self):
-
-//         # default dictionary to store graph
-//         self.graph = defaultdict(list)
-
-//     # function to add an edge to graph
-//     def addEdge(self,u,v):
-//         self.graph[u].append(v)
-
-//     # Function to print a BFS of graph
-//     def BFS(self, s):
-
-//         # Mark all the vertices as not visited
-//         visited = [False] * (max(self.graph) + 1)
-
-//         # Create a queue for BFS
-//         queue = []
-
-//         # Mark the source node as
-//         # visited and enqueue it
-//         queue.append(s)
-//         visited[s] = True
-
-//         while queue:
-
-//             # Dequeue a vertex from
-//             # queue and print it
-//             s = queue.pop(0)
-//             print (s, end = " ")
-
-//             # Get all adjacent vertices of the
-//             # dequeued vertex s. If a adjacent
-//             # has not been visited, then mark it
-//             # visited and enqueue it
-//             for i in self.graph[s]:
-//                 if visited[i] == False:
-//                     queue.append(i)
-//                     visited[i] = True

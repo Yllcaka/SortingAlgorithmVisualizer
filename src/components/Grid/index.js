@@ -6,7 +6,7 @@ import Square from './Square';
 const Grid = ({ heigth, width }) => {
   const [isClicked, setClicked] = useState(false);
   const [remove, setRemove] = useState(false);
-  let graphThing = graph(2, 2);
+  let graphThing = graph(heigth, width);
   const draw = () => {
     setClicked(true);
   };
@@ -18,7 +18,7 @@ const Grid = ({ heigth, width }) => {
   for (let row = 0; row < heigth; row++) {
     list[row] = [];
     for (let col = 0; col < width; col++) {
-      list[row][col] = 0;
+      list[row][col] = `${row} ${col}`;
     }
   }
   return (
@@ -51,7 +51,7 @@ const Grid = ({ heigth, width }) => {
       </div>
       <button onClick={() => setRemove(false)}>Build Wall</button>
       <button onClick={() => setRemove(true)}>Remove Wall</button>
-      <button onClick={() => graphThing.bfs("0 0")}>graph</button>
+      <button onClick={() => console.log(graphThing.getGraph())}>graph</button>
     </div>
   );
 };
